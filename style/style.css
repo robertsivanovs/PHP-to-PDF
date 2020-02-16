@@ -1,0 +1,102 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-image: url('../images/index.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.container {
+    margin: 0 auto;
+    display: flex;
+    width: 100%;
+}
+
+/* Kopā 4 DIV elementi */
+.main, .photo, .languages, .schools {
+    background: rgba(148, 180, 141, 0.93);
+    margin-top: 50px;
+    border: 1px solid black;
+}
+
+/* Katrs DIV bloks atsevišķi */
+/* Nosakot tā pozīciju */
+.main {
+    height: 470px;
+    width: 430px;
+}
+
+.photo {
+    height:470px;
+    width: 280px;
+}
+
+.languages {
+    height: 100%;
+    width: 350px;
+}
+.schools {
+    height: 100%;
+    width: 350px;
+}
+
+/* Virsraksti h2 */
+h2{ 
+    padding: 30px 0 0 30px;
+}
+
+/* Lauki, kuros lietotājs izvēlas valodu runātprasmi, rakstītpasmi, lasītprasmi */
+select {
+    margin-left: 12px;
+}
+
+/* Teksta lauku, e-pasta un datumu lauku noformējums */
+input[type=text], input[type=email], input[type=date]  {
+    width: 80%;
+    margin: 10px 0 0 30px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: block;
+}
+
+
+/* Teksts zem pamatinformācijas bloka ievades laukiem un izglītības iestažu bloka ievades laukiem */
+label {
+    display: block;
+    padding-left: 40px;
+    font-size: small;
+}
+
+input[type=button], input[type=submit], input[type=file]{
+    background: #555555;
+    border: 2px solid #49acff;   
+    border-radius: 26px;
+    color: white;
+}
+
+/* Poga, lai pievienotu lietotāja foto*/
+.photo-image__input{
+    padding: 5px;
+    margin-top: 20px;
+}
+
+div.languages > input[type=button], div.schools > input[type=button]{
+/* Pogas lai pievienotu papildu izglītīas iestādes un valodas */
+    padding: 10px;
+    margin: 10px 0 0 90px;
+}
+.schools-add__button:hover, .languages-add__button:hover, .main-button__submit:hover {
+    background-color:#48abfe; cursor: pointer;
+}
+
+/* Pamatinformācijas blokā, IESNIEGT poga (Submit) */
+.main-button__submit {
+    padding: 15px;
+    width: 360px;
+    margin: 15px 0 0 30px;
+}
