@@ -61,7 +61,7 @@ class validator {
      * @return void
      */
     public function sanitizeField(){
-        if (preg_match("/[^A-Za-z0-9\\\pā-žĀ-Ž]/", $this->value)) {
+        if (preg_match("/[^A-Za-z0-9\\\pā-žĀ-Ž\/]/", $this->value)) {
             $this->isValid[] = "$this->field lauks satur neatļautus simbolus!";
         }
         return $this;

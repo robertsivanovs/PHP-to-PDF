@@ -96,6 +96,40 @@ const addLanguage = () => {
     div[0].appendChild(rakstitPrasme);
 }
 
+/* Funkcija deleteLanguage ()
+
+noņem pievienoto valodas lauku un <option> laukus "Rakstīšana, Lasīšana, Runāšana" attiecīgajai valodai. */
+
+const deleteLanguage = () => {
+
+    // HTML counter which counts how many have been added.
+    let counter = document.getElementsByClassName("language-counter");
+
+    // Delete only if there are atleast 4 attributes
+    if (counter[0].value >= 4) {
+    let i = counter[0].value;
+
+    // Get elements
+    let val = document.getElementsByName("val-"+i);
+    let runat = document.getElementsByName("runat-"+i);
+
+    let lasit = document.getElementsByName("lasit-"+i);
+    let rakstit = document.getElementsByName("rakstit-"+i);
+
+    if (val[0] == undefined || runat[0] == undefined || lasit[0] == undefined || rakstit[0] == undefined) {
+        return document.getElementsByClassName("languages-remove__button")[0].style.display = "none";
+    }
+
+    // Remove elements
+    val[0].remove();
+    runat[0].remove();
+    lasit[0].remove();
+    rakstit[0].remove();
+
+    // Decrease counter
+    counter[0].value--;
+    }
+}
 
 /* Skaitītājs, kas tiek izmantots, lai uzskaitītu izglītības iestāžu skaitu */
 let i = 1;
@@ -151,7 +185,7 @@ const addSchool = () => {
     to.name = "to-"+i;
     spec.name = "spec-"+i;
 
-       /* HTML apslēptā ievades lauka, kas skaita cik skolas tiek peivienotas, vērtības noteikšana */
+    /* HTML apslēptā ievades lauka, kas skaita cik skolas tiek peivienotas, vērtības noteikšana */
     counter[0].value = i;
 
     /* Izveidoto elementu pievienošana HTML dokumenta elementam */
@@ -161,3 +195,142 @@ const addSchool = () => {
     div[0].appendChild(to);
     div[0].appendChild(spec);
 }
+
+/* Funkcija deleteSchool ()
+
+noņem pievienoto valodas lauku un <option> laukus "Rakstīšana, Lasīšana, Runāšana" attiecīgajai valodai. */
+
+const deleteSchool = () => {
+
+    // HTML counter which counts how many have been added.
+    let counter = document.getElementsByClassName("school-counter");
+
+    // Delete only if there are atleast 1 attribute
+    if (counter[0].value >= 2) {
+    let i = counter[0].value;
+
+    // Get elements
+    let school = document.getElementsByName("skola-"+i);
+    let from = document.getElementsByName("from-"+i);
+
+    let to = document.getElementsByName("to-"+i);
+    let speciality = document.getElementsByName("spec-"+i);
+
+    if (school[0] == undefined || from[0] == undefined || to[0] == undefined || speciality[0] == undefined) {
+        return document.getElementsByClassName("schools-remove__button")[0].style.display = "none";
+    }
+
+    // Remove elements
+    school[0].remove();
+    from[0].remove();
+    to[0].remove();
+    speciality[0].remove();
+
+    // Decrease counter
+    counter[0].value--;
+    }
+}
+
+/* jQuerry Validācija */
+$(document).ready(function(){
+
+    /* Pirmais solis - Pamatinformācija */
+    $(".main-button__step1").click(function() {
+
+        /* Pārbaude vai ievadītais lietotāja vārds ir vismaz 3 simbolus garš un satur tikai burtus (RegEx) */
+        if ($(".main-name__input").val().length < 3 || /[^a-zA-Zā-žĀ-Ž]/.test($(".main-name__input").val())) {
+            return alert("Lūdzu ievadiet derīgu vārdu!");
+
+        /* Uzvārda pārbaude */
+        } else if ($(".main-surename__input").val().length < 3 || /[^a-zA-Zā-žĀ-Ž]/.test($(".main-name__input").val())) {
+            return alert("Lūdzu ievadiet derīgu uzvārdu!");
+
+        /* Pārbaude vai ir ievadīts dzimšanas gads, .length vērtība būs 0 ja lauks nav aizpildīts pilnībā */
+        } else if ($(".main-bdate__input").val().length < 1) {
+            return alert("Lūdzu ievadiet derīgu dzimšanas gadu!");
+
+        /* E-pasta pārbaude */
+        } else if (!/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test($(".main-email__input").val()) || $(".main-email__input").val().length < 1) {
+            return alert("Lūdzu ievadiet derīgu e-pasta adresi!");
+
+        /* Telefona nummura pārbaude */
+        } else if ($(".main-phone__input").val().length < 8 || /[^0-9]\s+/.test($(".main-phone__input").val())) {
+            return alert("Lūdzu ievadiet derīgu telefona nummuru!");
+        }
+        /* Ja validācija noritējusi veiksmīgi, parādam foto augšupielādes formu (step 2) */
+        $(".main").hide();
+        $(".photo").fadeIn();
+    });
+
+    /* Foto augšupielāde (step 2) */
+    $(".photo-button__step2").click(function() {
+        if(!$(".photo-image__input").val()) {
+            return alert("Nav izvēlēts neviens attēls!");
+        }
+        $(".photo").hide();
+        $(".languages").fadeIn();
+    });
+    /* Atgriezties no foto formas atpakaļ pie pamatinformācijas */
+    $(".photo-button__return-to-step1").click(function() {
+        $(".photo").hide();
+        $(".main").fadeIn();
+    });
+
+    /* Valodu bloks (step 3) */
+    $(".languages-add__button").click(function() {
+        $(".languages-remove__button").css("display", "block");
+    });
+
+    /* Atgriezties no valodu formas atpakaļ pie foto */
+    $(".languages-button__return-to-step2").click(function() {
+        $(".languages").hide();
+        $(".photo").fadeIn();
+    });
+
+    /* Turpināt no valodu formas uz pie izglītību formu (step 4) */
+    $(".languages-button__step3").click(function() {
+        $(".languages").hide();
+        $(".schools").fadeIn();
+    });
+
+    /* Specialitāšu/izglītības bloks (step 4) */
+
+    /* Pievienot papildu skolas */
+    $(".schools-add__button").click(function() {
+        $(".schools-remove__button").css("display", "block");
+    });
+
+    /* Atgriezties no skolu/specialitāšu formas atpakaļ pie valodu formas */
+    $(".schools-button__return-to-step3").click(function() {
+        $(".schools").hide();
+        $(".languages").fadeIn();
+    });
+
+    /* Skolu lauku validācija un formas iesniegšana
+    Pie veiksmīgas validācijas turpinam ar PHP validāciju */
+
+    $(".main-button__submit").click(function() {
+
+        let i = 1;
+
+        for (i; i <= $(".school-counter").val(); i++) {
+
+            /* Pārbaudam vai ir ievadīts mācību uzsākšanas gads katrai skolai */
+            if ( $("[name='from-"+i+"']").val() !== undefined) {
+                if( ($("[name='from-"+i+"']").val()).length < 1) {
+                    event.preventDefault();
+                    return alert("Lūdzu ievadiet derīgu mācību uzsākšanas gadu!");
+                }
+            }
+
+            /* Pārbaudam vai ir ievadīts mācību beigu gads katrai skolai */
+            if ( $("[name='to-"+i+"']").val() !== undefined) {
+                if( ($("[name='to-"+i+"']").val()).length < 1) {
+                    event.preventDefault();
+                    return alert("Lūdzu ievadiet derīgu mācību beigu gadu!");
+                }
+            }
+
+        }
+    });
+});

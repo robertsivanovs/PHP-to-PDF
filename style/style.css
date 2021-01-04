@@ -4,10 +4,11 @@
 }
 
 body {
-    background-image: url('../images/index.jpg');
+    background-image: url('../images/b3.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
+    background-size: cover;
 }
 
 .container {
@@ -18,35 +19,46 @@ body {
 
 /* Kopā 4 DIV elementi */
 .main, .photo, .languages, .schools {
-    background: rgba(148, 180, 141, 0.93);
-    margin-top: 50px;
+    background:rgba(255,255,255, 0.7);
     border: 1px solid black;
+    margin: 50px auto;
+    border-radius: 4px;
+    text-align: center;
 }
 
 /* Katrs DIV bloks atsevišķi */
 /* Nosakot tā pozīciju */
 .main {
-    height: 470px;
+    height: 550px;
     width: 430px;
 }
 
 .photo {
-    height:470px;
-    width: 280px;
+    height: 550px;
+    width: 430px;
 }
 
 .languages {
     height: 100%;
-    width: 350px;
+    width: 430px;
+
 }
 .schools {
     height: 100%;
-    width: 350px;
+    width: 430px;
+}
+
+/* Fonts */
+label, p, h1, h2, input[type=text], input[type=email], input[type=date], input[type=button] {
+    font-family: arial;
 }
 
 /* Virsraksti h2 */
-h2{ 
+h2 { 
     padding: 30px 0 0 30px;
+    color: #ff4500; 
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 /* Lauki, kuros lietotājs izvēlas valodu runātprasmi, rakstītpasmi, lasītprasmi */
@@ -55,9 +67,9 @@ select {
 }
 
 /* Teksta lauku, e-pasta un datumu lauku noformējums */
-input[type=text], input[type=email], input[type=date]  {
+input[type=text], input[type=email], input[type=date] {
     width: 80%;
-    margin: 10px 0 0 30px;
+    margin: 25px 0 0 30px;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -69,34 +81,89 @@ input[type=text], input[type=email], input[type=date]  {
 label {
     display: block;
     padding-left: 40px;
-    font-size: small;
 }
 
+/* Pogas */
 input[type=button], input[type=submit], input[type=file]{
     background: #555555;
-    border: 2px solid #49acff;   
-    border-radius: 26px;
-    color: white;
+    border: 2px solid #ff4500;
+    border-radius: 4px;
+    color: #ff4500;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/* Poga, lai turpinātu */
+.main-button__step1 {
+    padding: 10px;
+    width: 50%;
+    margin: 45px auto;
+    display: block;
+}
+
+.main-bdate__input:hover {
+    cursor: pointer;
+}
+
+/* Teksts zem Pievienot Foto virsraksta */
+.photo-upload__paragraph {
+    margin-bottom: 30px;
 }
 
 /* Poga, lai pievienotu lietotāja foto*/
-.photo-image__input{
+.photo-image__input {
     padding: 5px;
-    margin-top: 20px;
+    margin: 20px 0 30px 0;
 }
 
-div.languages > input[type=button], div.schools > input[type=button]{
-/* Pogas lai pievienotu papildu izglītīas iestādes un valodas */
+/* Atpakaļ un turpināt pogas */
+.photo-button__return-to-step1, .photo-button__step2 {
+    padding: 5px 10px 5px 10px;
+}
+
+/* Valodu bloks */
+
+/* Pievienot un noņemt papildu skolas*/
+.languages-add__button, .languages-remove__button {
     padding: 10px;
-    margin: 10px 0 0 90px;
-}
-.schools-add__button:hover, .languages-add__button:hover, .main-button__submit:hover {
-    background-color:#48abfe; cursor: pointer;
+    width: 50%;
+    margin: 10px auto;
 }
 
-/* Pamatinformācijas blokā, IESNIEGT poga (Submit) */
-.main-button__submit {
-    padding: 15px;
-    width: 360px;
-    margin: 15px 0 0 30px;
+.languages-add__button {
+    display: block;
+}
+
+/* Atgriezties pie foto formas un turpināt uz mācību iestāžu formu pogas */
+.languages-button__return-to-step2, .languages-button__step3 { 
+    padding: 10px;
+}
+
+
+/* Mācību iestāžu bloks */
+
+/* "Pievienot papildu skolas" un "Iesniegt" pogas */
+.schools-add__button, .schools-remove__button {
+    padding: 10px;
+    width: 50%;
+    margin: 10px auto;
+}
+
+/* Pievienot papildu skolas */
+.schools-add__button {
+    display: block;
+}
+
+/* Atgriezties uz valodu formu un IESNIEGT (submit) pogas */
+.schools-button__return-to-step3, .main-button__submit {
+    padding: 10px;
+}
+
+/* Hover */
+.schools-add__button:hover, .schools-remove__button:hover, .languages-add__button:hover, .main-button__submit:hover, 
+.main-button__step1:hover, .photo-button__return-to-step1:hover, .languages-button__return-to-step2:hover,
+.photo-button__step2:hover, .languages-button__step3:hover, .languages-remove__button:hover, .schools-button__return-to-step3:hover {
+    cursor: pointer;
+    background-color: #ff4500;
+    color: white;
 }

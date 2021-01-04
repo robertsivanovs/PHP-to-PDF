@@ -22,7 +22,7 @@ class builder extends tfpdf {
      * @return void
      */
     public function buildHeader(){
-        $this->Image('../../images/logo.png',10,9,45,13);
+        $this->Image('../../images/logo.png',10,-7,45,45);
         $this->setFont('Arial', '', 28);
         $this->cell(80);
         $this->cell(30,10,'CV', 0, 0, 'C');
@@ -82,7 +82,7 @@ class builder extends tfpdf {
      */
     public function buildSkillsHeader(){
         $this->SetFont('DejaVu','',10);
-        $this->cell(10,10,'Iemaņas un zināšanas:');
+        $this->cell(10,10,'Valodu zināšanas:');
         $this->Ln(8);
         $this->SetFillColor(211,211,211);
         $this->cell(0, 2, '', 0, 2, 'L', true);

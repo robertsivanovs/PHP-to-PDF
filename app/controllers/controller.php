@@ -25,11 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         /* Tiek iegūti lietotāja ievadītie dati no Pamatinformācijas daļas
         * (Vārds, uzvārds, dzimšanas datums, e-pasta adrese un telefona nummurs */
 
-        $name = ($_POST["name"]);
-        $surename = ($_POST["surename"]);
-        $date = ($_POST["bdate"]);
-        $email = ($_POST["email"]);
-        $phone = ($_POST["phone"]);
+        $name = $_POST["name"];
+        $surename = $_POST["surename"];
+        $date = $_POST["bdate"];
+        $email = $_POST["email"];
+        $phone = $_POST["phone"];
 
         /* Saņemts lietotāja augšupielādētais attēls */
         $image = basename($_FILES["fileToUpload"]["name"]);
@@ -46,11 +46,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         /* Tiek veidots cikls, lai masīvos saglabātu nepieciešamo valodu, prasmju skaitu tālākai apstrādei */
         for ($i = 1; $i < $daudzums+1; $i++){
-            $valodas[] = ($_POST["val-".$i]);
-            $runat_prasme[] = ($_POST["runat-".$i]);
-            $lasit_prasme[] = ($_POST["lasit-".$i]);
-            $rakstit_prasme[] = ($_POST["rakstit-".$i]);
-        }        
+            $valodas[] = $_POST["val-".$i];
+            $runat_prasme[] = $_POST["runat-".$i];
+            $lasit_prasme[] = $_POST["lasit-".$i];
+            $rakstit_prasme[] = $_POST["rakstit-".$i];
+        }
+
+        /* Ja lietotājs nevēlas norādīt savas valodu prasmes, iestatam standarta (default) vērtību - N/A */
+        foreach ($runat_prasme as $index => $value) {
+            if ($value == "Runāšana") {
+                $runat_prasme[$index] = "N/A";
+            }
+        }
+
+        foreach ($lasit_prasme as $index => $value) {
+            if ($value == "Lasīšana") {
+                $lasit_prasme[$index] = "N/A";
+            }
+        }
+
+        foreach ($rakstit_prasme as $index => $value) {
+            if ($value == "Rakstīšana") {
+                $rakstit_prasme[$index] = "N/A";
+            }
+        }
 
         /* Masīvi, kuros tiek saglabāti lietotāja ievadītie dati par:
         * Skolām, Mācību sākuma, beigu datumiem un iegūto specialitāti katrā no iestādēm */
@@ -63,10 +82,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         /* Tiek veidots cikls, lai masīvos saglabātu nepieciešamo skolu skaitu, datumumiem un specialitātēm tālākai apstrādei */
         for ($i = 1; $i < $daudzums_skolas+1; $i++){
-            $skolas[]=$_POST['skola-'.$i];
-            $no[]=$_POST['from-'.$i];
+            $skolas[] = $_POST['skola-'.$i];
+            $no[] = $_POST['from-'.$i];
             $lidz[] = $_POST['to-'.$i];
-            $spec[]=$_POST['spec-'.$i];
+            $spec[] = $_POST['spec-'.$i];
         }
 
         /* DATU IEVĀKŠANAS BEIGAS */
