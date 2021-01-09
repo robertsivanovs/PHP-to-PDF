@@ -8,7 +8,7 @@ class database {
     public $servername = "localhost";
     public $username = "root";
     public $password = "";
-    public $dbname = "mendo";
+    public $dbname = "cv_generator";
     public $con;
 
     /**

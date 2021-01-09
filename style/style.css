@@ -16,7 +16,10 @@ body {
     display: flex;
     width: 100%;
 }
-
+.header {
+    text-align: center; 
+    color: white;
+}
 /* Kopā 4 DIV elementi */
 .main, .photo, .languages, .schools {
     background:rgba(255,255,255, 0.7);
@@ -85,7 +88,7 @@ label {
 
 /* Pogas */
 input[type=button], input[type=submit], input[type=file]{
-    background: #555555;
+    /* background: #555555; */
     border: 2px solid #ff4500;
     border-radius: 4px;
     color: #ff4500;

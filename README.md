@@ -26,8 +26,8 @@ Technologies used:
 
 ### Preview:
 ### Personal information form:
-![Personal information](https://i.ibb.co/mJ0Bc3S/form2.jpg "Personal info")
+![Personal information](https://i.ibb.co/n0Yr6QT/Screenshot-2021-01-09-CV-ener-anas-forma.jpg "Personal info")
 ### Languages form:
-![Languages](https://i.ibb.co/3hsxWxP/form1.jpg "Languages")
+![Languages](https://i.ibb.co/HFqnYhY/Screenshot-2021-01-09-CV-ener-anas-forma-1.jpg "Languages")
 ### PDF result:
-![Result](https://i.ibb.co/MGtLwGY/result.png "Result")
+![Result](https://i.ibb.co/JtkQMG1/Screenshot-2021-01-09-controller-php.png "Result")

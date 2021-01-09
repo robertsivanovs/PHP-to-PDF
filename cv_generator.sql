@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 04, 2021 at 02:30 PM
+-- Generation Time: Jan 09, 2021 at 03:14 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mendo`
+-- Database: `cv_generator`
 --
 
 -- --------------------------------------------------------
