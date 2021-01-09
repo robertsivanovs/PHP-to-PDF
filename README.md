@@ -6,8 +6,10 @@ Generates .pdf resume that includes personal data, photo, language skills and ed
 Includes both front end and back end validation using PHP and JavaScript. 
 Has options to add/remove unlimited ammounts of fields. Saves all data in database.
 
-To run simply pull this project.
-Database SQL dump - mendo.sql
+To run:
+1. Pull this project,
+2. Database SQL dump - cv_generator.sql
+3. Set DB settings in /app/classes/database.php
 
 Technologies used:
 
