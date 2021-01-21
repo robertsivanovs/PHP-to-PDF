@@ -21,6 +21,7 @@ if (!empty($_SESSION['basic_info_error'])) {
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="script/script.js"></script>
@@ -76,10 +77,10 @@ if (!empty($_SESSION['basic_info_error'])) {
 
             <!-- Apslēpts teksta lauks, kurš uzskaita cik valodu lauki tiek pievienoti, tiek kontrolēts ar addLanguage(); metodi - sctipt.js-->
             <input type="hidden" class="language-counter" value="3" name="language-counter">
-            <input type="button" class="languages-add__button" Value="Pievienot papildu valodu" onClick="addLanguage();">
+            <input type="button" class="languages-add__button" Value="Pievienot papildu" onClick="addLanguage();">
             <input type="button" value="Atpakaļ" class="languages-button__return-to-step2">
             <input type="button" value="Turpināt" class="languages-button__step3">
-            <input type="button" class="languages-remove__button" Value="Noņemt papildu valodu" onClick="deleteLanguage();" hidden>
+            <input type="button" class="languages-remove__button" Value="Noņemt papildu" onClick="deleteLanguage();" hidden>
 
         </div>
         <!-- Lietotāja izglītības iestažu/pievienot iestādes bloks -->
@@ -92,10 +93,10 @@ if (!empty($_SESSION['basic_info_error'])) {
             <input type="date" name="to-1" min="1930-01-01" max="2021-01-01" required>
             <label>Beigu gads</label>
             <input type="text" name="spec-1" placeholder="Specialitāte" required>
-            <input type="button" class="schools-add__button" value="Pievienot papildu skolas" onClick="addSchool();">
+            <input type="button" class="schools-add__button" value="Pievienot papildu" onClick="addSchool();">
             <input type="button" value="Atpakaļ" class="schools-button__return-to-step3">
             <input type="submit" class="main-button__submit" value="IESNIEGT" name="main-button__submit">
-            <input type="button" class="schools-remove__button" value="Noņemt papildu skolas" onClick="deleteSchool();" hidden>
+            <input type="button" class="schools-remove__button" value="Noņemt papildu" onClick="deleteSchool();" hidden>
 
             <!-- Apslēpts teksta lauks, kurš uzskaita cik skolas tiek peivienotas, tiek kontrolēts ar addSchool(); metodi - sctipt.js-->
             <input type="hidden" class="school-counter" value="1" name="school-counter">

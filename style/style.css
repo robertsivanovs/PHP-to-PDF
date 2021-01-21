@@ -170,3 +170,15 @@ input[type=button], input[type=submit], input[type=file]{
     background-color: #ff4500;
     color: white;
 }
+
+/* Responsivas formas un lauki */
+@media screen and (max-width: 600px) {
+    .main, .photo, .languages, .schools {
+        margin: 0;
+        width: 100%;
+    }
+    input[type=text], input[type=email], input[type=date] {
+        margin: 20px 0;
+        width: 90%;
+  }
+}
