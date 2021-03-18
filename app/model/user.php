@@ -4,9 +4,10 @@
  * user model @author Roberts Ivanovs
  * Satur medoti un SQL vaicājumu datubāzes atjaunošanai.
  */
-include_once '../classes/database.php';
+include_once '../classes/Database.php';
 
-class user extends database {
+class User extends Database
+{
     /**
      * createUser
      * 
@@ -20,7 +21,8 @@ class user extends database {
      *
      * @return void
      */
-    public function createUser($name, $surename, $date, $email){
+    public function createUser($name, $surename, $date, $email)
+    {
         try {
             $sql = "INSERT INTO users (names, surename, email, birthdate) VALUES (:names, :surename, :email, :birthdate)";
             $stmt = $this->con->prepare($sql);
@@ -29,7 +31,7 @@ class user extends database {
             $stmt->bindValue(':birthdate', $date);
             $stmt->bindValue(':email', $email);
             $result = $stmt->execute();
-        } catch (PDOException $e){
+        } catch (PDOException $e) {
             return $e->getMessage();
         }
     }

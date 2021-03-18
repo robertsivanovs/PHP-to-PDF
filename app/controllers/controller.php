@@ -7,17 +7,17 @@
  * Galvenais kontrolieris, kas organizē lapas darbību.
  */
 
-spl_autoload_register(function($class) {
+spl_autoload_register(function ($class) {
     $klases = '../classes/' . $class . '.php';
     $modeli = '../model/' . $class . '.php';
-    if(file_exists($klases)) {
+    if (file_exists($klases)) {
         require $klases;
-    } else if(file_exists($modeli))
-    require $modeli;
+    } else if (file_exists($modeli))
+        require $modeli;
 });
 
 // Pārbaude vai notiek formas apstirpināšana.
-if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST["main-button__submit"])) {
 
         /* DATU IEVĀKŠANA */
@@ -45,11 +45,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $daudzums = $_POST['language-counter'];
 
         /* Tiek veidots cikls, lai masīvos saglabātu nepieciešamo valodu, prasmju skaitu tālākai apstrādei */
-        for ($i = 1; $i < $daudzums+1; $i++){
-            $valodas[] = $_POST["val-".$i];
-            $runat_prasme[] = $_POST["runat-".$i];
-            $lasit_prasme[] = $_POST["lasit-".$i];
-            $rakstit_prasme[] = $_POST["rakstit-".$i];
+        for ($i = 1; $i < $daudzums + 1; $i++) {
+            $valodas[] = $_POST["val-" . $i];
+            $runat_prasme[] = $_POST["runat-" . $i];
+            $lasit_prasme[] = $_POST["lasit-" . $i];
+            $rakstit_prasme[] = $_POST["rakstit-" . $i];
         }
 
         /* Ja lietotājs nevēlas norādīt savas valodu prasmes, iestatam standarta (default) vērtību - N/A */
@@ -81,11 +81,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $spec = array();
 
         /* Tiek veidots cikls, lai masīvos saglabātu nepieciešamo skolu skaitu, datumumiem un specialitātēm tālākai apstrādei */
-        for ($i = 1; $i < $daudzums_skolas+1; $i++){
-            $skolas[] = $_POST['skola-'.$i];
-            $no[] = $_POST['from-'.$i];
-            $lidz[] = $_POST['to-'.$i];
-            $spec[] = $_POST['spec-'.$i];
+        for ($i = 1; $i < $daudzums_skolas + 1; $i++) {
+            $skolas[] = $_POST['skola-' . $i];
+            $no[] = $_POST['from-' . $i];
+            $lidz[] = $_POST['to-' . $i];
+            $spec[] = $_POST['spec-' . $i];
         }
 
         /* DATU IEVĀKŠANAS BEIGAS */
@@ -95,32 +95,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         /* Šajā kontrolierī netiek aprakstītas metodes lietotāja ievades validācijai, tam tiek izmantota atsevišķa klase
         /* validator.php */
-        $V1 = new validator(); // Validācijas klases izsaukšana, objekta izveide.
+        $V1 = new Validator(); // Validācijas klases izsaukšana, objekta izveide.
 
         /* Skolu un valodu bloki */
         /* Lietotāja ievdīto datu validācija skolu un valodu blokos */
-        foreach($valodas as $value) {
+        foreach ($valodas as $value) {
             $V1->setField("Valoda")->setValue($value)->sanitizeField()->checkEmpty(); // Paņēmiens - "Chaining"
         }
-        foreach($runat_prasme as $value) {
+        foreach ($runat_prasme as $value) {
             $V1->setField("Runatprasme")->setValue($value)->sanitizeField()->checkEmpty();
         }
-        foreach($lasit_prasme as $value) {
+        foreach ($lasit_prasme as $value) {
             $V1->setField("Lasitprasme")->setValue($value)->sanitizeField()->checkEmpty();
         }
-        foreach($rakstit_prasme as $value) {
+        foreach ($rakstit_prasme as $value) {
             $V1->setField("Rakstitprasme")->setValue($value)->sanitizeField()->checkEmpty();
         }
-        foreach($skolas as $value) {
+        foreach ($skolas as $value) {
             $V1->setField("Skola")->setValue($value)->sanitizeSchools()->checkEmpty();
         }
-        foreach($no as $value) {
+        foreach ($no as $value) {
             $V1->setField("Sakuma gads")->setValue($value)->checkDates()->checkEmpty();
         }
-        foreach($lidz as $value) {
+        foreach ($lidz as $value) {
             $V1->setField("Beigu gads")->setValue($value)->checkDates()->checkEmpty();
         }
-        foreach($spec as $value) {
+        foreach ($spec as $value) {
             $V1->setField("Specialitate")->setValue($value)->sanitizeSchools()->checkEmpty();
         }
 
@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $V1->setField("Telefons")->setValue($phone)->sanitizeField()->checkEmpty();
 
         /* Attēla validācija */
-        $P1 = new upload();
+        $P1 = new Upload();
         $P1->checkFake();
         $P1->checkFileSize();
         $P1->checkFormat();
@@ -141,14 +141,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         /* VALIDĀCIJAS BEIGAS */
 
         /* DATU NOSŪTĪŠANA SAGLABĀŠANAI DATU BĀZĒ UN .PDF FAILA IZVEIDE */
-        
+
         if ($P1->uploadImage() && $V1->valid()) { // Ja datu un attēla validācija noritējusi veiksmīgi {
 
-            $S1 = new school(); // 'schools' modelis. Nepieciešams, lai skolas, datumus, specialitātes saglabātu 'schools' tabulā.
-            $L1 = new language(); // 'languages' modelis. Nepieciešams, lai skolas, datumus, specialitātes saglabātu 'languages' tabulā.
-            $B1 = new builder(); // builder class. Klase atbild par .PDF dokumenta izveidi.
-            $U1 = new user(); // 'user' Modelis. Nepieciešams, lai lietotāja pamatinformāciju saglabātu 'users' tabulā.
-            $P1 = new picture(); // 'picture' Modelis, nepieciešams, lai augšupielādētā attēla nosaukumu saglabātu 'pictures' tabulā.
+            $S1 = new School(); // 'schools' modelis. Nepieciešams, lai skolas, datumus, specialitātes saglabātu 'schools' tabulā.
+            $L1 = new Language(); // 'languages' modelis. Nepieciešams, lai skolas, datumus, specialitātes saglabātu 'languages' tabulā.
+            $B1 = new Builder(); // builder class. Klase atbild par .PDF dokumenta izveidi.
+            $U1 = new User(); // 'user' Modelis. Nepieciešams, lai lietotāja pamatinformāciju saglabātu 'users' tabulā.
+            $P1 = new Picture(); // 'picture' Modelis, nepieciešams, lai augšupielādētā attēla nosaukumu saglabātu 'pictures' tabulā.
 
             /* Datu saglabāšana tabulās */
             $S1->addSchools($skolas, $no, $lidz, $spec);
@@ -166,4 +166,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         }
     }
 }
-

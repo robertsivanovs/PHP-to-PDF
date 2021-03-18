@@ -1,6 +1,6 @@
 <?php
 
-require './app/classes/userSkill.php';
+require './app/classes/UserSkill.php';
 /**
  * Pārbaude vai validācija noritējusi veiksmīgi, 
  * Ar JS paziņojumu (alert) tiek atgriezta kļūda pēc lauku validācijas, 

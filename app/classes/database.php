@@ -1,9 +1,11 @@
 <?php
+
 /**
  * database class @author Roberts Ivanovs
  * Tiek veidota, lai izbeidotu veiksmīgu savienojumu ar datubāzi.
  */
-class database {
+class Database
+{
 
     public $servername = "localhost";
     public $username = "root";
@@ -22,13 +24,14 @@ class database {
      * @throws PDOException $e
      * @return void
      */
-    public function __construct() {
-        try{
+    public function __construct()
+    {
+        try {
             $this->con = new PDO("mysql:host=$this->servername;dbname=$this->dbname; charset=UTF8", $this->username, $this->password);
-            $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+            $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->con->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             $this->con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        } catch (PDOException $e){
+        } catch (PDOException $e) {
             return $e->getMessage();
         }
     }

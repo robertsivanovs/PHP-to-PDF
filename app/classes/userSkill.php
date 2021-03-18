@@ -7,14 +7,15 @@
  * elementus index.php skatā, <div class="languages"> blokā.
  * 
  */
-class userSkill {
+class UserSkill
+{
 
     // Valodu prasmju kategorijas
     const POSSIBLE_SKILLS = ['Runāšana', 'Lasīšana', 'Rakstīšana'];
 
     // Katras valodu prasmes kategorijas zināšanu līmenis
     const POSSIBLE_LEVELS = ['Dzimtā', 'Teicami', 'Labi', 'Vāji'];
-    
+
     /**
      * getDropdown
      * 
@@ -25,7 +26,8 @@ class userSkill {
      * @param  mixed $var
      * @return void
      */
-    public static function getDropdown ($var) {
+    public static function getDropdown($var)
+    {
 
         if (!isset($var)) {
             return false;
@@ -36,17 +38,17 @@ class userSkill {
         // Runat-1- LV valoda | runat-2 - RUS | runat-3 ENG
         if ($var == 'runat-1' || $var == 'runat-2' || $var == 'runat-3') {
             // Atgriezīs <option>Runāšana</option> katrai valodai
-            $html .= "<option>".self::POSSIBLE_SKILLS[0]."</option>";
+            $html .= "<option>" . self::POSSIBLE_SKILLS[0] . "</option>";
         }
 
         if ($var == 'lasit-1' || $var == 'lasit-2' || $var == 'lasit-3') {
             // Atgriezīs <option>Lasīšana</option> katrai valodai
-            $html .= "<option>".self::POSSIBLE_SKILLS[1]."</option>";
+            $html .= "<option>" . self::POSSIBLE_SKILLS[1] . "</option>";
         }
 
         if ($var == 'rakstit-1' || $var == 'rakstit-2' || $var == 'rakstit-3') {
             // Atgriezīs <option>Rakstīšana</option> katrai valodai
-            $html .= "<option>".self::POSSIBLE_SKILLS[2]."</option>";
+            $html .= "<option>" . self::POSSIBLE_SKILLS[2] . "</option>";
         }
 
         /* Zem "Lasīšana, rakstīšana vai runāšana" pievienos prasmes  
@@ -58,6 +60,4 @@ class userSkill {
         $html .= "</select>";
         return $html;
     }
-
-    
 }

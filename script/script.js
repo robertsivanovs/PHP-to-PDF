@@ -312,7 +312,6 @@ $(document).ready(function(){
     $(".main-button__submit").click(function() {
 
         let i = 1;
-
         for (i; i <= $(".school-counter").val(); i++) {
 
             /* Pārbaudam vai ir ievadīts mācību uzsākšanas gads katrai skolai */
@@ -330,7 +329,6 @@ $(document).ready(function(){
                     return alert("Lūdzu ievadiet derīgu mācību beigu gadu!");
                 }
             }
-
         }
     });
 });

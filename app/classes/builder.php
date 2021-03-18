@@ -12,7 +12,8 @@ require('tfpdf/tfpdf.php');
  * PDF Dokumenta izveidei tiek izmantota bibliotēka FPDF - pieejama: http://www.fpdf.org/
  */
 
-class builder extends tfpdf {
+class Builder extends tfpdf
+{
 
     /**
      * buildHeader
@@ -21,17 +22,18 @@ class builder extends tfpdf {
      * Lietotājs neietekmē šo metodi, tā paliek nemainīga visiem lietotājiem.
      * @return void
      */
-    public function buildHeader(){
-        $this->Image('../../images/logo.png',10,-7,45,45);
+    public function buildHeader()
+    {
+        $this->Image('../../images/logo.png', 10, -7, 45, 45);
         $this->setFont('Arial', '', 28);
         $this->cell(80);
-        $this->cell(30,10,'CV', 0, 0, 'C');
+        $this->cell(30, 10, 'CV', 0, 0, 'C');
         $this->Ln(15);
-        $this->AddFont('DejaVu','','DejaVuSansCondensed.ttf',true);
-        $this->SetFont('DejaVu','',10);
-        $this->cell(10,10,'Pamatinformācija');
+        $this->AddFont('DejaVu', '', 'DejaVuSansCondensed.ttf', true);
+        $this->SetFont('DejaVu', '', 10);
+        $this->cell(10, 10, 'Pamatinformācija');
         $this->Ln(8);
-        $this->SetFillColor(211,211,211);
+        $this->SetFillColor(211, 211, 211);
         $this->cell(0, 2, '', 0, 2, 'L', true);
         $this->Ln(45);
     }
@@ -45,8 +47,9 @@ class builder extends tfpdf {
      *
      * @return void
      */
-    public function addImage($image){
-        $this->Image("../../uploads/$image",50,37,40,40);
+    public function addImage($image)
+    {
+        $this->Image("../../uploads/$image", 50, 37, 40, 40);
     }
 
     /**
@@ -62,13 +65,14 @@ class builder extends tfpdf {
      *
      * @return void
      */
-    public function buildBasicInfo($name, $surename, $bdate, $email, $phone) {
-        $this->SetFont('DejaVu','',10);
+    public function buildBasicInfo($name, $surename, $bdate, $email, $phone)
+    {
+        $this->SetFont('DejaVu', '', 10);
         $this->Cell(15);
-        $this->Cell(40,6,"Vārds, uzvārds: $name $surename", 0, 2);
-        $this->Cell(40,6,"Dzimšanas datums: $bdate", 0, 2);
-        $this->Cell(40,6,"E-pasta adrese: $email", 0, 2);
-        $this->Cell(40,6,"Telefons: $phone", 0, 1);
+        $this->Cell(40, 6, "Vārds, uzvārds: $name $surename", 0, 2);
+        $this->Cell(40, 6, "Dzimšanas datums: $bdate", 0, 2);
+        $this->Cell(40, 6, "E-pasta adrese: $email", 0, 2);
+        $this->Cell(40, 6, "Telefons: $phone", 0, 1);
         $this->Ln(5);
     }
 
@@ -80,11 +84,12 @@ class builder extends tfpdf {
      *
      * @return void
      */
-    public function buildSkillsHeader(){
-        $this->SetFont('DejaVu','',10);
-        $this->cell(10,10,'Valodu zināšanas:');
+    public function buildSkillsHeader()
+    {
+        $this->SetFont('DejaVu', '', 10);
+        $this->cell(10, 10, 'Valodu zināšanas:');
         $this->Ln(8);
-        $this->SetFillColor(211,211,211);
+        $this->SetFillColor(211, 211, 211);
         $this->cell(0, 2, '', 0, 2, 'L', true);
         $this->Ln(5);
     }
@@ -97,10 +102,11 @@ class builder extends tfpdf {
      * $header ir masīvs, kurš satur informāciju, par to kas tiks attēlots katrā tabulas šūnā.
      * @return void
      */
-    public function buildLanguageSkillsHeader(){
+    public function buildLanguageSkillsHeader()
+    {
         $header = array('Valoda', 'Runat', 'Lasit', 'Rakstit');
-        foreach($header as $col)
-        $this->Cell(40,7,$col,1);
+        foreach ($header as $col)
+            $this->Cell(40, 7, $col, 1);
         $this->Ln();
     }
 
@@ -121,14 +127,15 @@ class builder extends tfpdf {
      *
      * @return void
      */
-    public function buildLanguageSkills($valodas, $runat_prasme, $lasit_prasme, $rakstit_prasme){
-        for ($i = 0; $i < sizeof($valodas); $i++){
+    public function buildLanguageSkills($valodas, $runat_prasme, $lasit_prasme, $rakstit_prasme)
+    {
+        for ($i = 0; $i < sizeof($valodas); $i++) {
             $data = [
                 $i => [$valodas[$i], $runat_prasme[$i], $lasit_prasme[$i], $rakstit_prasme[$i]],
             ];
             foreach ($data as $tr) {
-                foreach ($tr as $td) 
-                $this->Cell(40, 7, $td, 1);
+                foreach ($tr as $td)
+                    $this->Cell(40, 7, $td, 1);
                 $this->Ln();
             }
         }
@@ -142,11 +149,12 @@ class builder extends tfpdf {
      * 
      * @return void
      */
-    public function buildSchoolsHeader(){
-        $this->SetFont('DejaVu','',10);
-        $this->cell(10,10,'Izglītība:');
+    public function buildSchoolsHeader()
+    {
+        $this->SetFont('DejaVu', '', 10);
+        $this->cell(10, 10, 'Izglītība:');
         $this->Ln(8);
-        $this->SetFillColor(211,211,211);
+        $this->SetFillColor(211, 211, 211);
         $this->cell(0, 2, '', 0, 2, 'L', true);
         $this->Ln(5);
     }
@@ -166,20 +174,21 @@ class builder extends tfpdf {
      *
      * @return void
      */
-    public function buildSchools($skolas, $no, $lidz, $spec){
-        $this->SetFont('DejaVu','',10);
+    public function buildSchools($skolas, $no, $lidz, $spec)
+    {
+        $this->SetFont('DejaVu', '', 10);
         $this->Cell(15);
 
-        for ($i = 0; $i < sizeof($skolas); $i++){
+        for ($i = 0; $i < sizeof($skolas); $i++) {
 
-        $this->Cell(40,6,"Skolas nosaukums: ".$skolas[$i], 0, 2);
-        $this->Cell(40,6,"Valsts: Latvija", 0, 2);
-        $this->Cell(40,6,"Gads No: ".$no[$i], 0, 2);
-        $this->Cell(40,6,"Gads līdz: ".$lidz[$i], 0, 2);
-        $this->Cell(40,6,"Specialitāte: ".$spec[$i], 0, 2);
-        $this->Cell(40,6,"", 0, 2);
+            $this->Cell(40, 6, "Skolas nosaukums: " . $skolas[$i], 0, 2);
+            $this->Cell(40, 6, "Valsts: Latvija", 0, 2);
+            $this->Cell(40, 6, "Gads No: " . $no[$i], 0, 2);
+            $this->Cell(40, 6, "Gads līdz: " . $lidz[$i], 0, 2);
+            $this->Cell(40, 6, "Specialitāte: " . $spec[$i], 0, 2);
+            $this->Cell(40, 6, "", 0, 2);
+        }
     }
-}
 
     /**
      * buildAll
@@ -208,7 +217,8 @@ class builder extends tfpdf {
      *
      * @return void
      */
-    public function buildAll($name, $surename, $bdate, $email, $phone, $image, $valodas, $runat_prasme, $lasit_prasme, $rakstit_prasme, $skolas, $no, $lidz, $spec){
+    public function buildAll($name, $surename, $bdate, $email, $phone, $image, $valodas, $runat_prasme, $lasit_prasme, $rakstit_prasme, $skolas, $no, $lidz, $spec)
+    {
         $this->AddPage();
         $this->buildHeader();
         $this->addImage($image);

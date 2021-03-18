@@ -1,4 +1,5 @@
 <?php
+
 /**
  * class validator @author Roberts Ivanovs
  * 
@@ -6,8 +7,9 @@
  * Tiek atgriezti kļūdas paziņojumi, ja tādi ir.
  */
 
-class validator {
-    
+class Validator
+{
+
     private $field;
     private $value;
     private $isValid = []; // Masīvs, kas saturēs visus kļūdas paziņojumus.
@@ -22,7 +24,8 @@ class validator {
      *
      * @return void
      */
-    public function setField($field){
+    public function setField($field)
+    {
         $this->field = $field;
         return $this;
     }
@@ -34,7 +37,8 @@ class validator {
      *
      * @return void
      */
-    public function setValue($value){
+    public function setValue($value)
+    {
         $this->value = $value;
         return $this;
     }
@@ -44,8 +48,9 @@ class validator {
      * Metode pārbauda, vai lietotaja aizpildītais lauks ir tukšs.
      * @return void
      */
-    public function checkEmpty(){
-        if(empty($this->value)){
+    public function checkEmpty()
+    {
+        if (empty($this->value)) {
             $this->isValid[] = "$this->field lauks nevar būt tukšs!";
         }
         return $this;
@@ -60,7 +65,8 @@ class validator {
      * 
      * @return void
      */
-    public function sanitizeField(){
+    public function sanitizeField()
+    {
         if (preg_match("/[^A-Za-z0-9\\\pā-žĀ-Ž\/]/", $this->value)) {
             $this->isValid[] = "$this->field lauks satur neatļautus simbolus!";
         }
@@ -77,7 +83,8 @@ class validator {
      *
      * @return void
      */
-    public function sanitizeSchools(){
+    public function sanitizeSchools()
+    {
         if (preg_match("/[^A-Za-z0-9 .\\\pā-žĀ-Ž]/", $this->value)) {
             $this->isValid[] = "$this->field lauks satur neatļautus simbolus";
         }
@@ -95,7 +102,8 @@ class validator {
      *
      * @return void
      */
-    public function checkDates(){
+    public function checkDates()
+    {
         if (preg_match("/[^0-9-]/", $this->value)) {
             $this->isValid[] = "$this->field Nekorekts datums!";
         }
@@ -108,7 +116,8 @@ class validator {
      * Metode pārbauda vai ievadītais e-pasts ir korekts.
      * @return void
      */
-    public function checkEmail(){
+    public function checkEmail()
+    {
         if (!filter_var($this->value, FILTER_VALIDATE_EMAIL)) {
             $this->isValid[] = "Email format ir not correct!";
         }
@@ -133,6 +142,6 @@ class validator {
      */
     public function getErrors()
     {
-        return implode("  " , $this->isValid);
+        return implode("  ", $this->isValid);
     }
 }

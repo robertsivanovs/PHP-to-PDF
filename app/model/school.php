@@ -5,9 +5,10 @@
  * Satur medoti un SQL vaicājumu datubāzes atjaunošanai.
  */
 
-include_once '../classes/database.php';
+include_once '../classes/Database.php';
 
-class school extends database {
+class School extends Database
+{
     /**
      * addSchools
      *
@@ -21,19 +22,20 @@ class school extends database {
      *
      * @return void
      */
-    public function addSchools($skolas, $no, $lidz, $spec){
+    public function addSchools($skolas, $no, $lidz, $spec)
+    {
         $izmers = sizeof($skolas);
-        try{
-            for($i = 0; $i < $izmers; $i++){
+        try {
+            for ($i = 0; $i < $izmers; $i++) {
                 $sql = "INSERT INTO schools (school, startdate, enddate, spec) VALUES (:school, :startdate, :enddate, :spec)";
                 $stmt = $this->con->prepare($sql);
-                $stmt->bindValue(':school' , $skolas[$i]);
-                $stmt->bindValue(':startdate' , $no[$i]);
-                $stmt->bindValue(':enddate' , $lidz[$i]);
-                $stmt->bindValue(':spec' , $spec[$i]);
+                $stmt->bindValue(':school', $skolas[$i]);
+                $stmt->bindValue(':startdate', $no[$i]);
+                $stmt->bindValue(':enddate', $lidz[$i]);
+                $stmt->bindValue(':spec', $spec[$i]);
                 $result = $stmt->execute();
-            } 
-        } catch(PDOException $e) {
+            }
+        } catch (PDOException $e) {
             return $e->getMessage();
         }
     }
