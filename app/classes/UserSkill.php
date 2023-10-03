@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+namespace app\classes;
+
 /**
  * Class userSkill @author Roberts Ivanovs
  * 
@@ -9,7 +12,6 @@
  */
 class UserSkill
 {
-
     // Valodu prasmju kategorijas
     const POSSIBLE_SKILLS = ['Runāšana', 'Lasīšana', 'Rakstīšana'];
 
@@ -23,17 +25,16 @@ class UserSkill
      * Skatā (index.php) tiek noteiktas, kā obligātas vismaz 3 valodas - LV, RUS un ENG.
      *
      *
-     * @param  mixed $var
-     * @return void
+     * @param string $var
+     * @return string
      */
-    public static function getDropdown($var)
+    public static function getDropdown(string $var): string
     {
-
         if (!isset($var)) {
-            return false;
+            return "";
         }
 
-        $html = "<select name=${var} required>";
+        $html = "<select name={$var} required>";
 
         // Runat-1- LV valoda | runat-2 - RUS | runat-3 ENG
         if ($var == 'runat-1' || $var == 'runat-2' || $var == 'runat-3') {
@@ -55,7 +56,7 @@ class UserSkill
         *  zināšanu līmeni, t.i - 'Dzimtā', 'Teicami', 'Labi', 'Vāji'
         */
         foreach (self::POSSIBLE_LEVELS as $key => $value) {
-            $html .= "<option>${value}</option>";
+            $html .= "<option>{$value}</option>";
         }
         $html .= "</select>";
         return $html;

@@ -8,8 +8,8 @@ class Database
 {
 
     public $servername = "localhost";
-    public $username = "root";
-    public $password = "";
+    public $username = "debian-sys-maint";
+    public $password = "AaXz923xselSfJAz";
     public $dbname = "cv_generator";
     public $con;
 

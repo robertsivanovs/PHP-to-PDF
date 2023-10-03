@@ -34,7 +34,7 @@ class Upload
      */
     public function checkFileSize()
     {
-        if ($_FILES["fileToUpload"]["size"] > 500000) {
+        if ($_FILES["fileToUpload"]["size"] > 5000000) {
             $this->uploadError = "Bilde ir pārāk liela!";
         }
     }
@@ -72,6 +72,12 @@ class Upload
                 $result = true;
                 return $result;
             } else {
+
+                var_dump($_FILES["fileToUpload"]["tmp_name"]);
+                var_dump($target_file);
+
+                die();
+
                 $this->uploadError = "Notikusi kļūda, mēģiniet vēlreiz!";
                 $result = false;
                 return $result;

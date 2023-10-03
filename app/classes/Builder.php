@@ -1,18 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Class builder @author Roberts Ivanovs
  * 
  * Klase, kas satur visas metodes .pdf faila izveidei.
  * Visi mainīgie šajā klasē tiek saņemti no kontroliera.
  */
-require('tfpdf/tfpdf.php');
+require 'tfpdf/tfpdf.php';
 
 /**
  * PDF Dokumenta izveidei tiek izmantota bibliotēka FPDF - pieejama: http://www.fpdf.org/
  */
 
-class Builder extends tfpdf
+class Builder extends tFPDF
 {
 
     /**

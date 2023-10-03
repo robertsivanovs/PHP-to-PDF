@@ -49,7 +49,9 @@ var $filename;
 var $fh;
 var $hmetrics;
 var $glyphPos;
+var $glyphdata;
 var $charToGlyph;
+var $codeToGlyph;
 var $ascent;
 var $descent;
 var $name;
@@ -68,6 +70,7 @@ var $underlineThickness;
 var $charWidths;
 var $defaultWidth;
 var $maxStrLenRead;
+var $maxUniChar;
 
 	function __construct() {
 		$this->maxStrLenRead = 200000;	// Maximum size of glyf table to read in as string (otherwise reads each glyph from file)
