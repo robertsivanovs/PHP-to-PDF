@@ -72,13 +72,7 @@ class Upload
                 $result = true;
                 return $result;
             } else {
-
-                var_dump($_FILES["fileToUpload"]["tmp_name"]);
-                var_dump($target_file);
-
-                die();
-
-                $this->uploadError = "Notikusi kļūda, mēģiniet vēlreiz!";
+                $this->uploadError = "File upload error! (Most likely permissions)";
                 $result = false;
                 return $result;
             }
