@@ -8,8 +8,8 @@
  */
 
 spl_autoload_register(function ($class) {
-    $klases = '../classes/' . $class . '.php';
-    $modeli = '../model/' . $class . '.php';
+    $klases = '../Classes/' . $class . '.php';
+    $modeli = '../Models/' . $class . '.php';
     if (file_exists($klases)) {
         require $klases;
     } else if (file_exists($modeli))

@@ -4,7 +4,7 @@
  * user model @author Roberts Ivanovs
  * Satur medoti un SQL vaicājumu datubāzes atjaunošanai.
  */
-include_once '../classes/Database.php';
+include_once '../Classes/Database.php';
 
 class User extends Database
 {

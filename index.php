@@ -1,7 +1,7 @@
 <?php
 
-require './app/classes/UserSkill.php';
-use app\classes\UserSkill;
+require './app/Classes/UserSkill.php';
+use app\Classes\UserSkill;
 
 /**
  * Pārbaude vai validācija noritējusi veiksmīgi, 
@@ -37,7 +37,7 @@ if (!empty($_SESSION['basic_info_error'])) {
     <div class="container">
         <!-- Pamatinformācijas bloks -->
         <div class="main">
-            <form id="form" action="app/controllers/Controller.php" method="POST" enctype="multipart/form-data">
+            <form id="form" action="app/Controllers/IndexController.php" method="POST" enctype="multipart/form-data">
                 <h2>Pamatinformācija</h2>
                 <input type="text" class="main-name__input" name="name" placeholder="Ievadiet Jūsu vārdu" required>
                 <input type="text" class="main-surename__input" name="surename" placeholder="Ievadiet Jūsu uzvārdu" required>
@@ -47,7 +47,7 @@ if (!empty($_SESSION['basic_info_error'])) {
                 <input type="button" value="Turpināt" class="main-button__step1">
         </div>
         <!-- Lietotāja foto bloks -->
-        <div class="photo">
+        <div class="photo" hidden>
             <h2>Pievienot Foto:</h2>
             <p class="photo-upload__paragraph">Spiediet "izvēlēties failu" lai augšupielādētu foto</p>
             <img class="photo__image" src="#" alt="Jūsu foto parādīsies šeit">
@@ -58,7 +58,7 @@ if (!empty($_SESSION['basic_info_error'])) {
 
         </div>
         <!-- Lietotāja valodu/pievienot valodu bloks -->
-        <div class="languages">
+        <div class="languages" hidden>
             <h2> Valodu prasmes: </h2>
             <label> Valoda: Lasīšana: Runāšana: Rakstīšana: </label>
             <!-- Nepieciešamās 3 valodas -->
@@ -86,7 +86,7 @@ if (!empty($_SESSION['basic_info_error'])) {
 
         </div>
         <!-- Lietotāja izglītības iestažu/pievienot iestādes bloks -->
-        <div class="schools">
+        <div class="schools" hidden>
             <h2>Pievienojiet izglītības iestādes:</h2>
             <input type="text" name="skola-1" placeholder="Ievadiet skolas nosaukumu" required>
             <label>Piem.: Rīgas 62.vidusskola</label>

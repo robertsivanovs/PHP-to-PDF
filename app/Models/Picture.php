@@ -5,7 +5,7 @@
  * 
  * Satur medoti un SQL vaicājumu datubāzes atjaunošanai.
  */
-include_once '../classes/Database.php';
+include_once '../Classes/Database.php';
 
 class Picture extends Database
 {

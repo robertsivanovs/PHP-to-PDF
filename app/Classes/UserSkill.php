@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-namespace app\classes;
+namespace app\Classes;
 
 /**
  * Class userSkill @author Roberts Ivanovs
